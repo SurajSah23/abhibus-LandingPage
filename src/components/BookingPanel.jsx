@@ -34,6 +34,12 @@ const BookingPanel = () => {
   };
 
   const handleSearch = () => {
+    console.log({
+      mode: activeTab,
+      from,
+      to,
+      date: departureDate
+    });
     alert(
       `Searching for ${activeTab}\nFrom: ${from}\nTo: ${to}\nDate: ${departureDate}`
     );
