@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AbhiAssuredBanner() {
   return (
@@ -69,8 +70,8 @@ export default function AbhiAssuredBanner() {
         </div>
 
         <div className="mt-6">
-          <a
-            href="#"
+          <Link
+            to="/abhi-assured"
             className="text-red-300 hover:text-red-500 flex items-center gap-1"
           >
             Read More
@@ -79,7 +80,7 @@ export default function AbhiAssuredBanner() {
               alt="Arrow"
               className="w-4 h-4"
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
