@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // ✅ Import Link
 
 const tabs = [
   'Top Bus Routes',
@@ -9,39 +10,20 @@ const tabs = [
 ];
 
 const tabContent = {
-  'Top Bus Routes': ["Hyderabad to Bangalore Bus", "Vijayawada to Hyderabad Bus", "Chennai to Madurai Bus", "Mumbai to Ahmedabad Bus", "Ahmedabad to Rajkot Bus", "Jaipur to Anmedabad Bus", "Delhi to Jaipur Bus", "Hyderabad to Vijayawada Bus", "Bangalore to Hyderabad Bus", "Chennai to Coimbatore Bus", "Indore to Bhopal Bus", "Ahmedabad to Indore Bus", "Delhi to Lucknow Bus", "Hyderabad to Mumbai Bus", "Bangalore to Chennai Bus", "Mumbai to Pune Bus"," Indore to Ahmedabad Bus", "Udaipur to Jaipur Bus", "Delhi to Gorakhpur Bus", "Vijayawada to Bangalore Bus", "Chennai to Bangalore Bus", "Mumbai to Hyderabad Bus", "Ahmedabad to Jaipur Bus", "Jaipur to Delhi Bus", "Delhi to Shimla Bus"]
-  ,
+  'Top Bus Routes': ["Hyderabad to Bangalore Bus", "Vijayawada to Hyderabad Bus", "Chennai to Madurai Bus", "Mumbai to Ahmedabad Bus", "Ahmedabad to Rajkot Bus", "Jaipur to Anmedabad Bus", "Delhi to Jaipur Bus", "Hyderabad to Vijayawada Bus", "Bangalore to Hyderabad Bus", "Chennai to Coimbatore Bus", "Indore to Bhopal Bus", "Ahmedabad to Indore Bus", "Delhi to Lucknow Bus", "Hyderabad to Mumbai Bus", "Bangalore to Chennai Bus", "Mumbai to Pune Bus"," Indore to Ahmedabad Bus", "Udaipur to Jaipur Bus", "Delhi to Gorakhpur Bus", "Vijayawada to Bangalore Bus", "Chennai to Bangalore Bus", "Mumbai to Hyderabad Bus", "Ahmedabad to Jaipur Bus", "Jaipur to Delhi Bus", "Delhi to Shimla Bus"],
   'Buses From Top Cities': [
-    'Hyderabad Bus Tickets',
-    'Mangalore Bus Tickets',
-    'Coimbatore Bus Tickets',
-    'Indore Bus Tickets',
-    'Rajkot Bus Tickets',
-    'Gorakhpur Bus Tickets',
-    'Shimla Bus Tickets',
-    "Vijayawada Bus Tickets",
-    "Bellary Bus Tickets",
-    "Goa Bus Tickets",
-    "Bhopal Bus Tickets",
-    "Udaipur Bus Tickets",
-    "Lucknow Bus Tickets",
-    "Tirupathi Bus Tickets",
-    "Chennai Bus Tickets",
-    "Mumbai Bus Tickets",
-    "Surat Bus Tickets",
-    "Jodhpur Bus Tickets",
-    "Chandigarh Bus Tickets",
-    "Bangalore Bus Ticket",
-    "Madurai Bus Tickets",
-    "Pune Bus Tickets",
-    "Ahmedabad Bus Tickets",
-    "Jaipur Bus Tickets",
-    "Manali Bus Tickets",
+    'Hyderabad Bus Tickets', 'Mangalore Bus Tickets', 'Coimbatore Bus Tickets',
+    'Indore Bus Tickets', 'Rajkot Bus Tickets', 'Gorakhpur Bus Tickets',
+    'Shimla Bus Tickets', 'Vijayawada Bus Tickets', 'Bellary Bus Tickets',
+    'Goa Bus Tickets', 'Bhopal Bus Tickets', 'Udaipur Bus Tickets',
+    'Lucknow Bus Tickets', 'Tirupathi Bus Tickets', 'Chennai Bus Tickets',
+    'Mumbai Bus Tickets', 'Surat Bus Tickets', 'Jodhpur Bus Tickets',
+    'Chandigarh Bus Tickets', 'Bangalore Bus Ticket', 'Madurai Bus Tickets',
+    'Pune Bus Tickets', 'Ahmedabad Bus Tickets', 'Jaipur Bus Tickets',
+    'Manali Bus Tickets',
   ],
-  'Top RTC Buses': ["APSRTC", "TGSRTC", "GSRTC", "Kerala RTC", "HRTC", "TNSTC", "RSRTC", "OSRTC", "UPSRTC", "BSRTC", "PRTC", "JKSRTC"]
-  ,
-  'Top Bus Services': ["Orange Tours and Travels", "Dashmesh Travels", "Intrcity SmartBus", "SRS Travels", "Raj Ratan Tours and Travels", "Patel Tours and Travels", "Mahalaxmi Travels", "Shrinath Travels", "Morning Star Travels", "Royal Safari", "Zing Bus", "Greenline Travels", "Dolphin Travels House", "Kanker Roadways", "Hans Travels", "Sri Krishna Travels", "Samay Shatabdi", "M.R Travels", "Swamy Ayyappa Travels", "YBM Travels", "VRL Travels", "V Kaveri Travels", "Gujarat Travels", "Kalpana Travels", "Jakhar Travels"]
-  ,
+  'Top RTC Buses': ["APSRTC", "TGSRTC", "GSRTC", "Kerala RTC", "HRTC", "TNSTC", "RSRTC", "OSRTC", "UPSRTC", "BSRTC", "PRTC", "JKSRTC"],
+  'Top Bus Services': ["Orange Tours and Travels", "Dashmesh Travels", "Intrcity SmartBus", "SRS Travels", "Raj Ratan Tours and Travels", "Patel Tours and Travels", "Mahalaxmi Travels", "Shrinath Travels", "Morning Star Travels", "Royal Safari", "Zing Bus", "Greenline Travels", "Dolphin Travels House", "Kanker Roadways", "Hans Travels", "Sri Krishna Travels", "Samay Shatabdi", "M.R Travels", "Swamy Ayyappa Travels", "YBM Travels", "VRL Travels", "V Kaveri Travels", "Gujarat Travels", "Kalpana Travels", "Jakhar Travels"],
   'Quick Links': ["Bus Ticket Booking", "Cancel Booking", "AbhiBus Travel Blog", "Bus Booking Offers", "Refer A Friend", "bus ixigo booking", "Check Bus Ticket Status", "News", "Sitemap", "Live Bus Tracking", "Abhi Assured", "SRTC Directory"]
 };
 
@@ -94,9 +76,13 @@ export default function FooterTabs() {
             'Our Management',
             'Investors Relations'
           ].map((link, idx) => (
-            <a href="#" key={idx} className="hover:underline">
+            <Link
+              key={idx}
+              to={`/${link.toLowerCase().replace(/[^a-z]+/g, '-')}`} // generates route paths like /home, /about, /faq-s
+              className="hover:underline"
+            >
               {link}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
