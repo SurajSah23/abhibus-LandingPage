@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaLocationArrow, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight, FaExchangeAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const tabs = [
   { label: "Buses", icon: "https://i.ibb.co/RpHHjxsF/Screenshot-2025-05-02-151736-removebg-preview.png" },
@@ -9,6 +10,7 @@ const tabs = [
 ];
 
 const BookingPanel = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Buses");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -34,19 +36,15 @@ const BookingPanel = () => {
   };
 
   const handleSearch = () => {
-    console.log({
-      mode: activeTab,
-      from,
-      to,
-      date: departureDate
-    });
-    alert(
-      `Searching for ${activeTab}\nFrom: ${from}\nTo: ${to}\nDate: ${departureDate}`
-    );
+    if (from && to && departureDate) {
+      navigate(`/search/${from}/${to}/${departureDate}`);
+    } else {
+      alert("Please fill all fields");
+    }
   };
 
   return (
-    <div className="bg-[url('https://i.ibb.co/q3cv3wWc/web-new-bg.webp')] bg-cover bg-center py-30 px-4">
+    <div className="bg-[url('https://i.ibb.co/q3cv3wWc/web-new-bg.webp')] bg-cover bg-center py-20 px-4">
       <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-lg p-6 sm:p-8">
         {/* Tabs */}
         <div className="flex items-center justify-between flex-wrap gap-4">
@@ -73,7 +71,7 @@ const BookingPanel = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-5 gap-2 items-center bg-gray-50 p-4 rounded-xl">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-5 gap-2 items-center bg-gray-100 p-4 rounded-xl">
           <div className="flex items-center gap-2 border-r border-gray-300 pr-3">
             <FaLocationArrow className="text-gray-500" />
             <input

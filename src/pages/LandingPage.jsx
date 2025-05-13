@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from '../components/Header';
 import BookingPanel from '../components/BookingPanel';
 import OffersSection from '../components/OffersSection';
-import AllOffersPage from '../components/AllOffersPage'; // ✅ new component
+import AllOffersPage from '../components/AllOffersPage'; 
 import WhyChooseUs from '../components/WhyChooseUs';
 import SrtcCarousel from '../components/SrtcCarousel';
 import AbhiAssuredBanner from '../components/AbhiAssuredBanner';
@@ -23,6 +23,7 @@ import AppDownloadCard from '../components/AppDownloadCard';
 import AboutAbhibus from '../components/AboutAbhibus';
 import FooterTabs from '../components/FooterTabs';
 import Footer from '../components/Footer';
+import SearchResults from '../components/SearchResults';
 
 
 
@@ -60,6 +61,7 @@ const LandingPage = () => {
           }
         />
         <Route path="/offers" element={<AllOffersPage />} />
+        <Route path="/search/:from/:to/:date" element={<SearchResults />} />
       </Routes>
     </>
   )
