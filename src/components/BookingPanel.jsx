@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FaLocationArrow, FaMapMarkerAlt, FaCalendarAlt, FaArrowRight, FaExchangeAlt } from "react-icons/fa";
+import {
+  FaLocationArrow,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaArrowRight,
+  FaExchangeAlt,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const tabs = [
@@ -7,6 +13,18 @@ const tabs = [
   { label: "Flights", icon: "https://i.ibb.co/Zp7XY2Tn/Screenshot-2025-05-02-152431-removebg-preview.png" },
   { label: "Trains", icon: "https://i.ibb.co/qFB5pg4L/Screenshot-2025-05-02-152635-removebg-preview.png" },
   { label: "Hotels", icon: "https://i.ibb.co/Kchr4jtL/Screenshot-2025-05-02-130104-removebg-preview.png" },
+];
+
+const locations = [
+  "", // for default empty value
+  "Delhi",
+  "Mumbai",
+  "Bangalore",
+  "Chennai",
+  "Kolkata",
+  "Hyderabad",
+  "Jaipur",
+  "Pune",
 ];
 
 const BookingPanel = () => {
@@ -72,29 +90,44 @@ const BookingPanel = () => {
 
         {/* Search Bar */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-5 gap-2 items-center bg-gray-100 p-4 rounded-xl">
+          {/* Leaving From */}
           <div className="flex items-center gap-2 border-r border-gray-300 pr-3">
             <FaLocationArrow className="text-gray-500" />
-            <input
-              type="text"
-              placeholder="Leaving From"
+            <select
               className="bg-transparent outline-none text-sm w-full"
               value={from}
               onChange={(e) => setFrom(e.target.value)}
-            />
+            >
+              <option value="">Leaving From</option>
+              {locations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
+            </select>
           </div>
+
+          {/* Going To */}
           <div className="flex items-center gap-2 border-r border-gray-300 pr-3 pl-2">
             <button onClick={handleSwap}>
               <FaExchangeAlt className="text-gray-500" />
             </button>
             <FaMapMarkerAlt className="text-gray-500" />
-            <input
-              type="text"
-              placeholder="Going To"
+            <select
               className="bg-transparent outline-none text-sm w-full"
               value={to}
               onChange={(e) => setTo(e.target.value)}
-            />
+            >
+              <option value="">Going To</option>
+              {locations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
+            </select>
           </div>
+
+          {/* Departure Date */}
           <div className="flex items-center gap-2 border-r border-gray-300 pr-3 pl-2">
             <div className="text-xs text-gray-500">Departure</div>
             <FaCalendarAlt className="text-gray-500" />
@@ -105,6 +138,8 @@ const BookingPanel = () => {
               onChange={(e) => setDepartureDate(e.target.value)}
             />
           </div>
+
+          {/* Today / Tomorrow Buttons */}
           <div className="flex gap-2 pl-2">
             <button
               className="text-sm bg-white border border-gray-300 rounded-lg px-3 py-1 hover:bg-gray-100"
@@ -119,6 +154,8 @@ const BookingPanel = () => {
               Tomorrow
             </button>
           </div>
+
+          {/* Search Button */}
           <button
             onClick={handleSearch}
             className="bg-red-500 text-white font-semibold flex items-center justify-center gap-2 text-sm py-2 rounded-xl hover:bg-red-600"
